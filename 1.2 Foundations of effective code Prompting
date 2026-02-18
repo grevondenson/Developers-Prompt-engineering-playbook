@@ -1,0 +1,53 @@
+Prompting an AI codding tool is somewhat lime communicating with a very literal, sometimes knowledgeable collaborator.
+To get useful results, you need to set the stage clearly and guide the AI on what you want and how you wnat it.
+
+Below are foundational principles that underpin all examples in this guide:
+
+    Provide rich context 
+        Always assume the AI knows nothing about your project beyond what you provide.
+        Include relevant details such as programming language, frameworks, and libraries, as well as the specific cunction or snippet in question.
+        If there's an error, provide the exact error message and describe what the code is supposed to do.
+        Example 
+            "I have a Node.js function using Express and Mongoose that should fetch a user by ID, but it throws a TypeError. Here's the code and error"
+
+    Be specific about your goal or question 
+        Vague queries led to vague answers.
+        Example
+            "This JavaScript function is returning undefined instead of the expected result. Given the code below, can you help identify why and how to fix it?"
+        Similary, if you want an optimization, ask for a specific kind of optimization.
+        Example     
+            "How can I improve the runtime performance of this sorting function for 10k items?"
+
+    Break down complex tasks 
+        When implementing a new feature or takling a multi-step problem, don't feed the entire problem inone gigantic prompt.
+        It's more effective to split the work into smaller chunks and iterate.
+        Example
+            "First, generate a React componnet skeleton for a product list page.Next, we'll add state managment. Then we'll integrate the API call"
+
+    Include examples of Inputs/Outputs or expected behaviour 
+        If you can illustrate what you want with an example
+        For example 
+            "Given the array [3,1,4], this function should return [1,3,4]"
+        Provinding an example makes the AI understand and reduce ambiguity.
+        In prompt engineering terms, this is sometimes called "few-shot prompting" Where you show an ai a pattern to follow.
+
+    Leverage Roles or persona 
+        This can influence the style and depth of the answers.
+        For instance 
+            " Act as a senior React developer and review my code for potential bugs"
+            "You are a javascript performance expert. Optmize the following function"
+        By setting up the role, you prime the assistant to  adopt the relevant tone.
+        Role play prompt can yield more structured and expert-level guidance.
+
+    Iterate and refine the conversation 
+        Prompt engineering is an iterative process, not one shot deal.
+        Developers need to review the AI first answer then do a follow up questions or make corrections.
+        The key is to view the AI as a partner you can coach - progress over perfection.
+        Example
+            "That solution uses recursion, but i'd prefer an iterative approach - i can you try agnain without recursion?"
+
+    Maintain code clarity and consistency 
+        This last principle is a bit indirect but very important for tools that work on your code context.
+        Write clean, well structured code and comments, even before the AI comes to play.
+        If you show a consistent pattern or style, the Ai will continue it. 
+        

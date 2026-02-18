@@ -1,0 +1,57 @@
+AI pair programmers are powerful but not magical- they have no prior knowledge of your specific project or intent beyond what you tell them or include in context.
+The more information you provide, the better the output.
+We'll distill key prompt patterns, repeatable frameworks, and memorable examples that have resonated with developers.
+You'll see comparisons of good vs bad prompts with actual AI responses, along with commentary to understand why one succeeds where the other flaters.
+
+    Prompt technique for AI code assistants
+
+    Role Prompting 
+        "You are a senior {language} developer. review this function for {goal}.
+
+        Purpose - Simulate expert level code review, debugging or refactoring.
+
+    Explicit Context setup 
+        "Here's the problem: {summary}. The code is below. It should do {expected behaviour}, but instead it's doing {actual behaviour}. why?
+
+        Purpose - Frame the problem clearly to avoid agentic generic, surface-level responses.
+
+    Input/Output examples 
+        "This function should return {expected output} when given {input}. Can you write or fix the code?"
+
+        Purpose - Guides the assistant by showing intent through examples
+
+    Iterative chaining 
+        "first, generate a skeleton of the component. Next, we'll add state. Then handle API calls"
+
+        Purpose - Break larger tasks into steps to avoid overwhelming or vague prompts.
+
+    Debug with simulation 
+        "Walk through the function line by line. What are the variable values? Where might it break?"
+
+        Purpose - Get the assistant to stimulate runtime behaviour and surface hidden bugs.
+
+    Feature Blueprinting 
+        "I'm building {Feature}. Requirments:{bullets} using: {tech stack}. Please scaffold the initial component and explain your choices."
+
+        Purpose - Kick off feature development with AI-led planning and scaffolding
+
+    Code refactor guidance 
+        "Refactor this code to improve {goal}, such as {e.g readability, performance, idomatic style} Use comments to explain your choices."
+
+        Purpose - Makes AI refactors align with your goals, not arbitiary changes
+
+    Ask for alternatives
+        "Can you rewrite this using a functional style? What would a recursive version look like"
+
+        Purpose - Explre multiple implementation paths and expand your toolbox.
+
+    Rubber Ducking 
+        "Here's what i think this function does: {your explanation}. Am i misiisng anything? Does this reveal any bugs?"
+
+        Purpose - Let the AI challenge your understanding and spot inconsistencies 
+
+    Constraint anchoring 
+        "Please avoid {e.g recursion} and stick to {e.g ES6 syntax, no external libraries}. Optimize for {e.g memory}. Here's the function."
+
+        Purpose - Prevent the AI from overreaching or introducing incompatible patterns.
+        

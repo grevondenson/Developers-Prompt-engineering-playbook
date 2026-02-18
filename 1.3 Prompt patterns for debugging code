@@ -1,0 +1,31 @@
+Debugging is a natural fit for an AI assistant.
+However, success largely depends on how you present the problem to the AI.
+Here's how to systematically prompt for help in finding and fixing bugs:
+
+    Clearly describe the problem and symptoms
+        Begin your prompt by describing what is going on wrong and what the code is supposed to do.
+        Always include the exact error message or incorrect behaviour 
+        For example 
+            “I have a function in JavaScript that should calculate the sum of an array of numbers, but it’s returning NaN (Not a Number) instead of the actual sum. Here is the code: [include code]. It should output a number (the sum) for an array of numbers like [1,2,3], but I’m getting NaN. What could be the cause of this bug?"
+        Providing a structured context (code + error + expected outcome + what you've tried ) gives the AI i solid starting point.
+
+    Use step by step or line by line approach for tricky bugs
+        For instance
+        "Walk through this function line by line and track the value of total at each step. It's not accumulating correctly-where does the logic go wrong?"
+        Engaging the AI in an explanatory role can surface the bug in the process of explanation.
+
+    Provide minimal reproducible examples when possible 
+        Sometimes your actual codebase is large, but the bug can be demonstrated in a small snippet. 
+        If you can extract or simplify the code that still reproduces the issue, do so and feed that to the AI.
+        This not only mmakes it easier for the AI to focus, but also force you to clarify the problem.
+        Example
+            "Here's a pared-down example that still triggers the error [include snippet]. Why does this error occur?"
+
+    Ask focused questions and follow ups
+        After Providing context, it's often effectiveto directly ask what you need
+        For example 
+            "What might be causing the issue, and how can i fix it?"
+            "That explanation makes sense. Can you show me how to fix the code? Please provide the corrected code."
+        Another folow up pattern: if the AI gives a fix but you dont understand why ask 
+            "Can you explain why that change solves the problem?'
+        This way you learn for next time, and you double-check that the AI's reasoning is sound.
