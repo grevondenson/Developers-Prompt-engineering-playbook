@@ -64,4 +64,107 @@ We will use a scenario on JavaScript (Node.js) where we have some less-than-idea
         return result;
         }
 
+    Issues in the code:
+        We see duplicated fetch logic for users and orders (could be refactored into a helper or loop), Lack of error detail (Just a generic error message), and it could perhaps run the fetches in parallel to improved speed.
+    Lets see two prompting approaches:
+
+        Prompt 1 Underspecified
+            "Refactor the above getCombinedData function"
+        AI response:
+          async function getCombinedData(apiClient) {
+            // Fetch users and orders in parallel
+            const [usersResponse, ordersResponse] = await Promise.all([
+                apiClient.fetch('/users'),
+                apiClient.fetch('/orders')
+            ]);
+            if (!usersResponse.ok || !ordersResponse.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const [users, orders] = await Promise.all([
+                usersResponse.json(),
+                ordersResponse.json()
+            ]);
+            // Map orders by userId for efficient lookup
+            const ordersByUser = {};
+            for (const order of orders) {
+                if (!ordersByUser[order.userId]) {
+                ordersByUser[order.userId] = [];
+                }
+                ordersByUser[order.userId].push(order);
+            }
+            // Combine data
+            return users.map(user => ({
+                user,
+                orders: ordersByUser[user.id] || []
+            }));
+            }  
+
+        In this case the AI happened to make good choices, but it assumed a lot because the prompt was open ended.
+        It assumed that performance should be improved (parallel request, which is a smart change but what if parallel wasn't safe here?), and it changed error handling to a generic message "Failed to fetch data"
+        This illustrates that an underspecified prompt can sometimes get good results on simple cases, but for complex code, it might go off in an undesired direction or miss certain improvements you care about.
+
+    
+        Prompt 2 Goal oriented 
+            Refactor the above getCombinedData function to eliminate duplicate code and improve performance.
+            Specially;
+                Avoid repeating the fetch logic for users and orders- maybe use a helper or fetch them together.
+                Fetch both lists in parallel if possible
+                Keep the error handling for each fetch (we want to know which call failed)
+                Improve the combination of data, possibly by using a more efficien structure for lookup instead of a nested loop.
+                Provide the refactored code with comments explaining the changes.
+
+            AI's response 
+                async function getCombinedData(apiClient) {
+                // 1. Fetch users and orders in parallel to improve performance
+                const [usersResponse, ordersResponse] = await Promise.all([
+                    apiClient.fetch('/users'),
+                    apiClient.fetch('/orders')
+                ]);
+
+                // 2. Handle errors separately to know which call failed
+                if (!usersResponse.ok) {
+                    throw new Error('Failed to fetch users');
+                }
+                if (!ordersResponse.ok) {
+                    throw new Error('Failed to fetch orders');
+                }
+
+                // Parse JSON responses in parallel
+                const [users, orders] = await Promise.all([
+                    usersResponse.json(),
+                    ordersResponse.json()
+                ]);
+
+                // 3. Use a lookup map for orders by userId for efficient matching
+                const ordersByUser = orders.reduce((map, order) => {
+                    if (!map[order.userId]) {
+                    map[order.userId] = [];
+                    }
+                    map[order.userId].push(order);
+                    return map;
+                }, {});
+
+                // 4. Combine data using the lookup map
+                return users.map(user => ({
+                    user,
+                    orders: ordersByUser[user.id] || []  // empty array if no orders for user
+                }));
+                }
+
+            Analysis
+            This response directly addressed all the specified goals.
+            The code is refactored to be cleaner and faster, and it maintained seperate error messages such as requested.
+            This is a great outcome because we, as the prompter, defined what "refactor" meant in the context.
+            we guided the AI to produce a solution that matches our needs with minimal back-and-forth.
+
+When you know what you want improved, spell it out. 
+AI is good at following instructions, but it won't read your mind.
+
+Additional refactoring tips include;
+    Refactor in steps 
+    Ask for alternative approaches
+    Combine refactoring with explanation to learn patterns
+    Validation and testing 
+    
+
         
