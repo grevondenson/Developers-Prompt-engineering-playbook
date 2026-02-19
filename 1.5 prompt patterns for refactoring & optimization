@@ -1,0 +1,67 @@
+    REFACTORING CODE 
+This is making it cleaner, faster or more idiomatic without changing its functionality.
+This is an area that AI assistants shine, since they are trained in vast amounts of code.
+However, to tap into the knowledge effectively, your promot must clarify what "better" means for your situation.
+Here's how prompt for refactoring tasks:
+
+    State your refactoring goals explicitly
+        Example
+        "Refactor the following function to improve its readability and maintainability (reduce repition, use clearer variable names)
+        "Optimize this algorithim for speed- It's slow on large inputs"
+        By stating specific goals, you help the model decide which transformations to apply.
+        If you have multiple goals ensure you list them out all.
+        Remember, it will not inherently know what you consider a problem in the code- you must tell it.
+    
+    Provide the necessary code context 
+        Example 
+        "I have a React component written as a class. Please refactor it to a functional component using hooks."
+        Include version or enviroment details if relevant.
+        It's important to include the full function or section that you want to be refactored, and sometimes a bit of surrounding context if relevant.
+
+    Encourage explanations along with the code 
+        A great way to learn from an AI-led refactor (and verify its correctness) is to ask for an explanation of the changes.
+        Example
+        "Please suggest a refactored version of the code, and explain the improvements you made"
+        In-short use the AI's ability to explain as a safeguard.
+
+    Use role play to set a high standard 
+        For refactoring you might say 
+        "Act as a seasoned Typescript expert and refactor the code to align with the best practices and modern standards"
+        "Act like an experienced Python developer mentoring a junior. Provide explanations and write docstrings. rewrite the code to optimize it"
+        This often yields not just superficial changes, but more insightful improvements because the AI tries to live up to the expert persona.
+
+
+Now lets walk through an example of refactoring to see how prompt can influence the outcome.
+We will use a scenario on JavaScript (Node.js) where we have some less-than-ideal code and we want it improved.
+
+    REFACTORING EXAMPLE: POOR VS IMPROVED PROMPT 
+
+    Suppose you have a function that makes two database calls and does some processing.
+    It works, but it's not pretty - there's duplicated code and it's hard to read.
+    We wil like to refactor it for clarity and efficiency.
+    Here is the original code:
+
+        // Original function: Fetches two lists and processes them (needs refactoring)
+        async function getCombinedData(apiClient) {
+        // Fetch list of users
+        const usersResponse = await apiClient.fetch('/users');
+        if (!usersResponse.ok) {
+            throw new Error('Failed to fetch users');
+        }
+        const users = await usersResponse.json();
+        // Fetch list of orders
+        const ordersResponse = await apiClient.fetch('/orders');
+        if (!ordersResponse.ok) {
+            throw new Error('Failed to fetch orders');
+        }
+        const orders = await ordersResponse.json();
+        // Combine data (match user to orders)
+        const result = [];
+        for (let user of users) {
+            const userOrders = orders.filter(o => o.userId === user.id);
+            result.push({ user, orders: userOrders });
+        }
+        return result;
+        }
+
+        
