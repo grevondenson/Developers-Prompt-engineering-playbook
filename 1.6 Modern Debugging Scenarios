@@ -1,0 +1,44 @@
+ React hook dependency issues 
+    poor prompt
+        "My useFffect isn't working right"
+
+    Enhanced prompt 
+        "I have a React component that fetches user data, but it's causing infinite re-renders. Here's my code:
+
+        const UserProfile = ({ userId }) => {
+        const [user, setUser] = useState(null);
+        const [loading, setLoading] = useState(true);
+        
+        useEffect(() => {
+            fetchUser(userId).then(setUser).finally(() => setLoading(false));
+        }, [userId, setUser, setLoading]); // Problem is here
+        
+        return loading ? <div>Loading...</div> : <div>{user?.name}</div>;
+        };
+
+
+Modern state architecture 
+    Poor prompt 
+        "Build the state managment for my Next.js ecommerce app"
+
+    Enhanced prompt 
+        I'm building a Next.js 14 e-commerce app and need to design the state management architecture. Here are my requirements:
+
+        Components:
+            Product listing page (needs: products[], filters, pagination)
+            Shopping cart (needs: cart items, totals, shipping info)
+            User auth (needs: user profile, auth status, preferences)
+            Real-time notifications (needs: toast messages, error states)
+
+        Technical constraints:
+            Next.js 14 with App Router and Server Components
+            TypeScript strict mode
+            Server-side data fetching for SEO
+            Client-side interactivity for cart/user actions
+            State should persist across navigation
+
+        Should I use:
+            Zustand stores for each domain (cart, auth, notifications)
+            React Query/TanStack Query for server state + Zustand for client state
+            A single Zustand store with slices
+            Please provide a recommended architecture with code examples showing how to structure stores and integrate with Next.js App Router patterns.

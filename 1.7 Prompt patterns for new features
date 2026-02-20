@@ -1,0 +1,43 @@
+One of the most exciting use of AI code assistant is to help you write new code from scratch or integrate a new feature into an existin g codebase.
+The challenge here is that this task are usually open-ended they are various ways of implementing a feature.
+This guide is about guiding the AI to produce code that fits your needs and style.
+Below are the strategies to do that:
+
+    Starting with high-level instructions, then drill down 
+        Begin outlining what you want to build in plain language, possibly breaking it into smaller tasks.
+        For example 
+            Outline a plan to add a search feature that filters a list of products by name in React app. The products are fetched from an API 
+        By dividing each feature, you ensure each prompt is specific and the response are managable.
+        This also mirrors iterative development - you can test piece as it's built.
+
+    Provide relevant context or reference code 
+        If you are adding a feature to an existing project, it helps tremendously to show the AI how similar things are done in that project.
+        For example 
+            Here is an existing UserList component (code..).Now create a ProductList component that is similar but includes a search bar.
+        Having relevant files open or referencing them in your prompt provides contaxt that leads to more project-specific and consistent code suggestions.
+        Another trick is when your project uses a particular coding style or archiitecture mention that 
+        For example 
+            We use Redux for state managment-integrate the search state into Redux store.
+        
+    Use comments and TODOs as inline prompts
+        When working directly in an IDE with copilot, one effective workflow is writting a comment that describes the next chunk of code you need, then letting the AI autocomplete it.
+        For example 
+            In a Node.js backend, you might write 
+            //TODO: Validate the request payload (ensure name and email are provided) and then start the next line.
+        Copilot often picks up on the intent and generate a block of code performing the validation.
+        However, be perpared to edit the generated code if the AI misinterprets as always, verify its correctness.
+
+    Provide examples of expected input/output or usage 
+        For example 
+            Implement a function formatPrice (amount) in JavaScript that takes a number (like 2.5) and returns a string formatted in USD (like $2.50) should return '$2.50'
+
+    When the result isn't what you want, rewrite the prompt with more detail or constraints
+        It's common for first generation of code for a new feature doesn't nail it.
+        Treat the AI as a junior dev who gave a first draft - now you need to give a feedback.
+        For example 
+            The solution works but i'd prefer if you used the built-in array filter method instead of a for loop
+            or 
+            can you refactor the generated component to use React Hooks for state instead of a class component? Our codebase is all functional components.
+        Figure out what you are lacking and clarify it.
+
+    
