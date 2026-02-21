@@ -1,0 +1,61 @@
+Anti patterns - Common mistakes that lead to poor AI responses.
+Here are some frequent prompt failures and how to fix them:
+
+    Anti-pattern: The vague prompt 
+        This is the classic "It doesn't work, please fix it" or "write something that does X" without  enough details.
+        vague prompts force the AI to guess the context and often  result in generic advice or irrelevant code.
+        The fix is straightforward: Add context and specifics.
+        A good practice is to read your prompt and ask, "could this question apply to dozens of different scenarios?"
+        If yes, it's too vague. Make it so specific that it could only apply to your scenario.
+
+    Anti-pattern: The overload prompt
+        This is the opposite issue: Asking the AI to do many things at once.
+        For instance, "generate a complete NOde.js app with authentication, a front-end in React, and deployment scripts."
+        The AI might attempt it, but youll likely get a jumbled or incomplete result, or it might ignore some parts of the request.
+        The remedy is to split the tasks.
+        Prioritize: do one thing at a time, as emphasized earlier.
+        This makes it easier to catch mistakes and ensures the model stays focused.
+
+    Anti-pattern: Missing the question 
+        Sometimes users will present a lot of information but never clearly ask a question or specify what they need.
+        For example "Here's my code."
+        This can confuse the AI - it doesn't know what you want.
+        Always include a clear ask, such as "Identify ay bugs in the above code", "Explain what this code doe"
+        A prompt should have a purpose.
+        Make sure the AI knows why you showed it some code.
+
+    Anti-pattern: vague success criteria
+        This is a subtle one- Sometimes you might ask for an optimization or improvement, but you don't define what sucess looks like.
+        For example: "Make this function faster"
+        Faster by what metric? if the AI doesn't know your performance constraints, it might micro-optimize something that doesn't matter or use an approach that is theoretically faster.
+        We deal with this by explicitly stating goals like "reduce duplication" or "improve variable names"
+        i.e "refactor this to remove global variables and use class instead."
+
+    Anti-pattern: Ignoring Ai's clarification or output
+        Sometimes the AI might respond with a clarifying queston or an assumption.
+        For instance "Are you using React class components or functional components?"
+        if you ignore such questions and just reiterate your request, you're missing an opportunity to improve the prompt.
+        The AI is usually signaling that it needs more info or a clarification.
+        Treat like a conversation - if a human misunderstood, you'd explain differently; do the same for the AI.
+
+    Anti-pattern: Varying style or Inconsistency
+        If you keep changing how you ask or mixing different formats in one go, the model can get confused.
+        For example: Switching between first-person and third-person in instructions, or mixing pseudocode with actual code in a confusing way.
+        Consistency helps the model parse your intent correctly.
+        Also if you have a preffered style consistently mention it, otherwise the model might suggest one way in one prompt and another way later.
+
+    Anti-pattern: Vague reference like "above code"
+        If the conversation is long and you say "refactor the above code"
+        The Ai might lose track and pick the wrong code snippet to refactor.
+        It is safer to either quote th ecode again or specifically name the function you want refactored.
+        Models have a limited attention window, and although many LLMs can refer to prior parts of the conversation, giving it explicit context again can help avoid confusion.
+
+
+Finally here is a tactical way to rewriting prompts
+    Identify what was missing or incorrect in the AI;s response 
+    Add or emphasize that requirement in a new prompt
+    Break done the request further if needed.
+    Consider starting a fresh if the thread is stuck.
+
+Being ware of these anti patterns and their solutions, you'll become much faster at adjusting your prompts on the fly.
+Prompt Engineering is very much an iterative, feedback-driven process.
